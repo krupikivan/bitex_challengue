@@ -7,7 +7,21 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import flatpickr from "flatpickr";
+
+require("bootstrap")
+require("flatpickr")
+
+flatpickr(".datepicker", {});
+
+document.addEventListener("turbolinks:load", () => {
+    $('[data-tooltip-display="true"]').tooltip(),
+    flatpickr("[class='flatpickr']", {})
+})
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+require("../stylesheets/application.scss")

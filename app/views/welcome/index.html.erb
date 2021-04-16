@@ -114,47 +114,58 @@
       flex: 1;
       height: auto;
       }
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
       }
     </style>
   </head>
   <body>
+    
     <div class="main-block">
       <div class="left-part">
-        <i class="fas fa-graduation-cap"></i>
+        <i class="fas fa-user"></i>
         <h1>Send User data</h1>
         <p>This is a Bitex challengue</p>
         <div class="btn-group">
-          <a class="btn-item" href="">Learn HTML</a>
-          <a class="btn-item" href="">Select Quiz</a>
+          <a class="btn-item" href="">Btn 1</a>
+          <a class="btn-item" href="">Btn 2</a>
         </div>
       </div>
-        <%= form_tag('/post') do %>
-        <div class="title">
-          <i class="fas fa-pencil-alt"></i> 
-          <h2><%= @title %></h2>
-        </div>
-        <div class="info">
-          <input class="fname" type="text" name="name" placeholder="Full name">
-          <input type="text" name="name" placeholder="Email">
-          <input type="text" name="name" placeholder="Phone number">
-          <input type="password" name="name" placeholder="Password">
-          <select>
-            <option value="course-type" selected>Course type*</option>
-            <option value="short-courses">Short courses</option>
-            <option value="featured-courses">Featured courses</option>
-            <option value="undergraduate">Undergraduate</option>
-            <option value="diploma">Diploma</option>
-            <option value="certificate">Certificate</option>
-            <option value="masters-degree">Masters degree</option>
-            <option value="postgraduate">Postgraduate</option>
-          </select>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" name="checkbox"><span>I agree to the <a href="">Privacy Poalicy for Bitex.</a></span>
-        </div>
-        <div><%= send_data 'Send data' %></div>
-        <!-- <button type="submit" >Send data</button> -->
-        <% end %>
-    </div>
+      <%= form_with url: send_data_path do |f| %>
+      <div class="title">
+        <i class="fas fa-pencil-alt"></i> 
+        <h2><%= @title %></h2>
+      </div>
+      <div class="info">
+          <%= label_tag 'first_name' %>
+          <%= f.text_field 'Nombre' %>
+          <%= label_tag 'last_name' %>
+          <%= f.text_field 'Apellido' %>
+          <%= label_tag 'nationality' %>
+          <%= f.text_field 'Nacionalidad' %>
+          <%= label_tag 'id' %>
+          <%= f.text_field 'Documento Nacional de Identidad' %>
+          <%= label_tag 'birthdate_select' %>
+          <%= date_select("user", "date", start_year: 1940)%>
+          
+          <div class="col-lg-8">
+            <%= f.file_field :image %>
+          </div>
+
+           <button type="submit"><%= submit_tag 'Send data', data:{disable_with: "Sending...."} %></button>
+          
+      <% end %>
+      </div>
+
   </body>
-</html>

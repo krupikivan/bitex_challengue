@@ -1,0 +1,28 @@
+
+<% if flash[:notice] %>
+	<div class="alert alert-success alert-dismissable">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<%= raw(flash[:notice]) %>
+	</div>
+<% end %>
+<% if params[:info] %>
+	<div class="alert alert-info alert-dismissable">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<%= raw(params[:info]) %>
+	</div>
+<% end %>
+
+<% if flash[:error] %>
+	<div class="alert alert-danger alert-dismissable">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<%= raw(flash[:error]) %>
+	</div>
+<% end %>
+
+<% if flash[:alert] %>
+	<div class="alert alert-warning alert-dismissable">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<%= raw(flash[:alert]) %>
+	</div>
+<% end %>
+
